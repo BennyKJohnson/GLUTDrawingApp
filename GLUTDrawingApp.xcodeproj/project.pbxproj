@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6F046C551CBC8617005D6726 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C541CBC8617005D6726 /* main.cpp */; };
+		6F046C5D1CBC865F005D6726 /* CGGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C5C1CBC865F005D6726 /* CGGeometry.cpp */; };
+		6F046C5F1CBC875F005D6726 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F046C5E1CBC875F005D6726 /* OpenGL.framework */; };
+		6F046C611CBC8765005D6726 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F046C601CBC8765005D6726 /* GLUT.framework */; };
+		6F046C641CBC87DF005D6726 /* Toolpanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C621CBC87DF005D6726 /* Toolpanel.cpp */; };
+		6F046C671CBC8B5A005D6726 /* ColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C651CBC8B5A005D6726 /* ColorPalette.cpp */; };
+		6F046C6A1CBCAB47005D6726 /* CGView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C681CBCAB47005D6726 /* CGView.cpp */; };
+		6F046C6D1CBCB300005D6726 /* CGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6B1CBCB300005D6726 /* CGButton.cpp */; };
+		6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +33,20 @@
 /* Begin PBXFileReference section */
 		6F046C511CBC8617005D6726 /* GLUTDrawingApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLUTDrawingApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F046C541CBC8617005D6726 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6F046C5B1CBC865F005D6726 /* CGGeometry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGGeometry.hpp; sourceTree = "<group>"; };
+		6F046C5C1CBC865F005D6726 /* CGGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGGeometry.cpp; sourceTree = "<group>"; };
+		6F046C5E1CBC875F005D6726 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6F046C601CBC8765005D6726 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		6F046C621CBC87DF005D6726 /* Toolpanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Toolpanel.cpp; sourceTree = "<group>"; };
+		6F046C631CBC87DF005D6726 /* Toolpanel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Toolpanel.hpp; sourceTree = "<group>"; };
+		6F046C651CBC8B5A005D6726 /* ColorPalette.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorPalette.cpp; sourceTree = "<group>"; };
+		6F046C661CBC8B5A005D6726 /* ColorPalette.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorPalette.hpp; sourceTree = "<group>"; };
+		6F046C681CBCAB47005D6726 /* CGView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGView.cpp; sourceTree = "<group>"; };
+		6F046C691CBCAB47005D6726 /* CGView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGView.hpp; sourceTree = "<group>"; };
+		6F046C6B1CBCB300005D6726 /* CGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGButton.cpp; sourceTree = "<group>"; };
+		6F046C6C1CBCB300005D6726 /* CGButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGButton.hpp; sourceTree = "<group>"; };
+		6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorButton.cpp; sourceTree = "<group>"; };
+		6F046C6F1CBCBF0D005D6726 /* ColorButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorButton.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F046C611CBC8765005D6726 /* GLUT.framework in Frameworks */,
+				6F046C5F1CBC875F005D6726 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +65,8 @@
 		6F046C481CBC8616005D6726 = {
 			isa = PBXGroup;
 			children = (
+				6F046C601CBC8765005D6726 /* GLUT.framework */,
+				6F046C5E1CBC875F005D6726 /* OpenGL.framework */,
 				6F046C531CBC8617005D6726 /* GLUTDrawingApp */,
 				6F046C521CBC8617005D6726 /* Products */,
 			);
@@ -57,7 +83,19 @@
 		6F046C531CBC8617005D6726 /* GLUTDrawingApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F046C5B1CBC865F005D6726 /* CGGeometry.hpp */,
+				6F046C5C1CBC865F005D6726 /* CGGeometry.cpp */,
 				6F046C541CBC8617005D6726 /* main.cpp */,
+				6F046C631CBC87DF005D6726 /* Toolpanel.hpp */,
+				6F046C621CBC87DF005D6726 /* Toolpanel.cpp */,
+				6F046C661CBC8B5A005D6726 /* ColorPalette.hpp */,
+				6F046C651CBC8B5A005D6726 /* ColorPalette.cpp */,
+				6F046C691CBCAB47005D6726 /* CGView.hpp */,
+				6F046C681CBCAB47005D6726 /* CGView.cpp */,
+				6F046C6C1CBCB300005D6726 /* CGButton.hpp */,
+				6F046C6B1CBCB300005D6726 /* CGButton.cpp */,
+				6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */,
+				6F046C6F1CBCBF0D005D6726 /* ColorButton.hpp */,
 			);
 			path = GLUTDrawingApp;
 			sourceTree = "<group>";
@@ -119,6 +157,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F046C551CBC8617005D6726 /* main.cpp in Sources */,
+				6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */,
+				6F046C5D1CBC865F005D6726 /* CGGeometry.cpp in Sources */,
+				6F046C6D1CBCB300005D6726 /* CGButton.cpp in Sources */,
+				6F046C641CBC87DF005D6726 /* Toolpanel.cpp in Sources */,
+				6F046C671CBC8B5A005D6726 /* ColorPalette.cpp in Sources */,
+				6F046C6A1CBCAB47005D6726 /* CGView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +253,7 @@
 		6F046C591CBC8617005D6726 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -216,6 +261,7 @@
 		6F046C5A1CBC8617005D6726 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
