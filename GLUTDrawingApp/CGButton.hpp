@@ -19,12 +19,14 @@ typedef enum ControlState {
     ControlStateSelected
 } ControlState;
 
+class CGButton;
+typedef void (*ActionFunction)(CGButton);
 
 class CGButton: public CGView {
     
 public:
     ControlState controlState;
-    
+    ActionFunction handler;
     CGButton(CGRect rect) : CGView(rect) {
         
     };

@@ -25,9 +25,14 @@ CGView::CGView(CGRect rect) {
     mouseHandler = NULL;
     shouldHandleMouseEvent = false;
     
+  //  backgroundColor =  CGColorClearColor();
+    
 }
 
 void CGView::draw() {
+    
+    // Draw background color
+    //drawRect(frame, backgroundColor);
     
     // Draw All SubViews
     std::vector<CGView*>::iterator iterator = subViews.begin();

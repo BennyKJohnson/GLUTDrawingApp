@@ -16,6 +16,14 @@
 		6F046C6A1CBCAB47005D6726 /* CGView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C681CBCAB47005D6726 /* CGView.cpp */; };
 		6F046C6D1CBCB300005D6726 /* CGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6B1CBCB300005D6726 /* CGButton.cpp */; };
 		6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */; };
+		A3D3C78A1CC47286003350D9 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D3C7881CC47286003350D9 /* Circle.cpp */; };
+		A3D3C78D1CC48E3F003350D9 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D3C78B1CC48E3F003350D9 /* Point.cpp */; };
+		A3FB678D1CBDBB6600CB3A7A /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB678B1CBDBB6600CB3A7A /* Canvas.cpp */; };
+		A3FB67901CBDBC6200CB3A7A /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB678E1CBDBC6200CB3A7A /* Drawable.cpp */; };
+		A3FB67931CBDC77100CB3A7A /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB67911CBDC77100CB3A7A /* Polygon.cpp */; };
+		A3FB67961CBE169E00CB3A7A /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB67941CBE169E00CB3A7A /* Line.cpp */; };
+		A3FB67991CBE18FA00CB3A7A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB67971CBE18FA00CB3A7A /* Rectangle.cpp */; };
+		A3FB67D31CBF18B300CB3A7A /* Toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB67D11CBF18B300CB3A7A /* Toolbar.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +55,22 @@
 		6F046C6C1CBCB300005D6726 /* CGButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGButton.hpp; sourceTree = "<group>"; };
 		6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorButton.cpp; sourceTree = "<group>"; };
 		6F046C6F1CBCBF0D005D6726 /* ColorButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorButton.hpp; sourceTree = "<group>"; };
+		A3D3C7881CC47286003350D9 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
+		A3D3C7891CC47286003350D9 /* Circle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
+		A3D3C78B1CC48E3F003350D9 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		A3D3C78C1CC48E3F003350D9 /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
+		A3FB678B1CBDBB6600CB3A7A /* Canvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
+		A3FB678C1CBDBB6600CB3A7A /* Canvas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Canvas.hpp; sourceTree = "<group>"; };
+		A3FB678E1CBDBC6200CB3A7A /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
+		A3FB678F1CBDBC6200CB3A7A /* Drawable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Drawable.hpp; sourceTree = "<group>"; };
+		A3FB67911CBDC77100CB3A7A /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
+		A3FB67921CBDC77100CB3A7A /* Polygon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Polygon.hpp; sourceTree = "<group>"; };
+		A3FB67941CBE169E00CB3A7A /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		A3FB67951CBE169E00CB3A7A /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
+		A3FB67971CBE18FA00CB3A7A /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
+		A3FB67981CBE18FA00CB3A7A /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
+		A3FB67D11CBF18B300CB3A7A /* Toolbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Toolbar.cpp; sourceTree = "<group>"; };
+		A3FB67D21CBF18B300CB3A7A /* Toolbar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Toolbar.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +107,14 @@
 		6F046C531CBC8617005D6726 /* GLUTDrawingApp */ = {
 			isa = PBXGroup;
 			children = (
+				A3D3C7871CC4722D003350D9 /* Drawables */,
 				6F046C5B1CBC865F005D6726 /* CGGeometry.hpp */,
 				6F046C5C1CBC865F005D6726 /* CGGeometry.cpp */,
 				6F046C541CBC8617005D6726 /* main.cpp */,
 				6F046C631CBC87DF005D6726 /* Toolpanel.hpp */,
 				6F046C621CBC87DF005D6726 /* Toolpanel.cpp */,
+				A3FB67D21CBF18B300CB3A7A /* Toolbar.hpp */,
+				A3FB67D11CBF18B300CB3A7A /* Toolbar.cpp */,
 				6F046C661CBC8B5A005D6726 /* ColorPalette.hpp */,
 				6F046C651CBC8B5A005D6726 /* ColorPalette.cpp */,
 				6F046C691CBCAB47005D6726 /* CGView.hpp */,
@@ -96,8 +123,29 @@
 				6F046C6B1CBCB300005D6726 /* CGButton.cpp */,
 				6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */,
 				6F046C6F1CBCBF0D005D6726 /* ColorButton.hpp */,
+				A3FB678C1CBDBB6600CB3A7A /* Canvas.hpp */,
+				A3FB678B1CBDBB6600CB3A7A /* Canvas.cpp */,
 			);
 			path = GLUTDrawingApp;
+			sourceTree = "<group>";
+		};
+		A3D3C7871CC4722D003350D9 /* Drawables */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB678F1CBDBC6200CB3A7A /* Drawable.hpp */,
+				A3FB678E1CBDBC6200CB3A7A /* Drawable.cpp */,
+				A3FB67921CBDC77100CB3A7A /* Polygon.hpp */,
+				A3FB67981CBE18FA00CB3A7A /* Rectangle.hpp */,
+				A3FB67971CBE18FA00CB3A7A /* Rectangle.cpp */,
+				A3FB67951CBE169E00CB3A7A /* Line.hpp */,
+				A3FB67941CBE169E00CB3A7A /* Line.cpp */,
+				A3FB67911CBDC77100CB3A7A /* Polygon.cpp */,
+				A3D3C7891CC47286003350D9 /* Circle.hpp */,
+				A3D3C7881CC47286003350D9 /* Circle.cpp */,
+				A3D3C78C1CC48E3F003350D9 /* Point.hpp */,
+				A3D3C78B1CC48E3F003350D9 /* Point.cpp */,
+			);
+			name = Drawables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,13 +204,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FB67D31CBF18B300CB3A7A /* Toolbar.cpp in Sources */,
 				6F046C551CBC8617005D6726 /* main.cpp in Sources */,
 				6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */,
 				6F046C5D1CBC865F005D6726 /* CGGeometry.cpp in Sources */,
+				A3FB67961CBE169E00CB3A7A /* Line.cpp in Sources */,
+				A3FB67901CBDBC6200CB3A7A /* Drawable.cpp in Sources */,
 				6F046C6D1CBCB300005D6726 /* CGButton.cpp in Sources */,
+				A3D3C78A1CC47286003350D9 /* Circle.cpp in Sources */,
 				6F046C641CBC87DF005D6726 /* Toolpanel.cpp in Sources */,
+				A3FB67931CBDC77100CB3A7A /* Polygon.cpp in Sources */,
 				6F046C671CBC8B5A005D6726 /* ColorPalette.cpp in Sources */,
 				6F046C6A1CBCAB47005D6726 /* CGView.cpp in Sources */,
+				A3D3C78D1CC48E3F003350D9 /* Point.cpp in Sources */,
+				A3FB678D1CBDBB6600CB3A7A /* Canvas.cpp in Sources */,
+				A3FB67991CBE18FA00CB3A7A /* Rectangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +341,7 @@
 				6F046C5A1CBC8617005D6726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

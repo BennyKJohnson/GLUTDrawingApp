@@ -12,7 +12,7 @@
 
 void CGButton::draw() {
     
-   // drawRect(frame, backgroundColor);
+    drawRect(frame, backgroundColor);
     
     // Once drawn the text is no longer required. So cleanup memory
 }

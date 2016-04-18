@@ -66,18 +66,14 @@ CGColor statusBarColor() {
 
 
 // Modified code from http://slabode.exofire.net/circle_draw.shtml
-void drawCircle(CGRect rect, CGColor color)
-{
+void drawCircle(CGPoint center, float radius, CGColor color) {
     setContextColor(color);
     
-    float radius = fmin(rect.size.width, rect.size.height) / 2;
-    CGPoint center = getCenter(rect);
-
     glPushMatrix();
     glTranslatef(center.x, center.y,0);
     
     glBegin(GL_TRIANGLE_FAN);
-   // int numVectices = sweepAngleOuter - startAngleOuter;
+    // int numVectices = sweepAngleOuter - startAngleOuter;
     
     glVertex2f(0, 0);
     
@@ -89,8 +85,28 @@ void drawCircle(CGRect rect, CGColor color)
     
     glEnd();
     glPopMatrix();
-
 }
+
+void drawCircle(CGRect rect, CGColor color)
+{
+    
+    float radius = fmin(rect.size.width, rect.size.height) / 2;
+    CGPoint center = getCenter(rect);
+
+    drawCircle(center, radius, color);
+}
+
+void drawPoint(CGPoint point, CGColor color) {
+    
+    setContextColor(color);
+    
+    glBegin(GL_POINTS);
+    glVertex2f(point.x, point.y);
+    glEnd();
+    
+}
+
+
 
 bool hitTestWithRect(CGRect rect, CGPoint point) {
     
@@ -105,7 +121,7 @@ void drawRect(CGRect rect, CGColor color) {
     
     glPushMatrix();
     glTranslatef(rect.origin.x, rect.origin.y, 0);
-    
+   
     glBegin(GL_QUADS); //Begin quadrilateral coordinates
     //Trapezoid
     glVertex2i(0, 0); //Upper left
@@ -122,6 +138,17 @@ void drawRect(CGRect rect, CGColor color) {
     glPopMatrix();
     
 }
+
+CGColor colorOfPixelAtPoint(CGPoint point) {
+    
+    // Get Color
+    glReadBuffer(GL_FRONT);
+    unsigned char color[3];
+    glReadPixels((int)point.x, (int)point.y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, color);
+    return CGColorMakeWithRGB((int)color[0], (int)color[1], (int)color[2]);
+}
+
+
 
 // Helper function that returns a rect which origin will ensure that the rect is at the center of xy
 CGRect offsetRectToCenterOnOrigin(CGRect rect) {
@@ -193,6 +220,16 @@ CGColor CGColorMakeWithRGB(int r,int g,int b) {
     return color;
 }
 
+CGColor CGColorMakeWithRGB(char r,char g, char b) {
+    
+    CGColor color;
+    color.r = r / 255.0;
+    color.b = b / 255.0;
+    color.g = g / 255.0;
+    color.a = 1;
+    
+    return color;
+}
 
 CGColor CGColorSimpleYellow() {
     return CGColorMakeWithRGB(255,244,127);

@@ -16,6 +16,7 @@ ColorPalette::ColorPalette(CGRect rect): CGView(rect) {
      colorWidth = 35;
      padding = colorWidth + 10;
      yPadding = 10;
+     buttonsPerRow = 4;
     
 }
 
@@ -28,8 +29,12 @@ void ColorPalette::addColor(CGColor color) {
     colors.push_back(color);
     
     int numberOfColors = (int)colors.size();
-    int xPosition = frame.origin.x + (padding * numberOfColors);
-    int yPosition = frame.origin.y + yPadding;
+    int rowNumber = numberOfColors / buttonsPerRow;
+    int colNumber = numberOfColors % buttonsPerRow;
+    
+    int xPosition = frame.origin.x + (padding * colNumber);
+    
+    int yPosition = frame.origin.y + yPadding + (rowNumber * (colorWidth + yPadding));
     
     // Create Color Button
     CGRect colorButtonRect = CGRectMake(xPosition, yPosition, colorWidth, colorWidth);

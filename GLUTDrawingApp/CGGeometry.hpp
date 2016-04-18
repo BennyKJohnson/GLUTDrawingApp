@@ -35,7 +35,6 @@ typedef struct CGRect {
 CGRect CGRectMake(float x, float y, float width, float height);
 
 
-
 CGPoint CGPointMake(float x, float y);
 
 // Simple struct for color rgba values
@@ -44,10 +43,20 @@ typedef struct CGColor {
     float g;
     float b;
     float a;
+    bool operator==(const CGColor& rhs) const
+    {
+        return r == rhs.r && g == rhs.g && b == rhs.b;
+    }
+    bool operator!=(const CGColor& rhs) const
+    {
+        return !operator==(rhs);
+    }
+    
 } CGColor;
 
 // Convenience Constructor with rgb
 CGColor CGColorMakeWithRGB(int r,int g,int b);
+CGColor CGColorMakeWithRGB(char r,char g, char b);
 
 // Sets OpenGL current color to CGColor values
 void setContextColor(CGColor color);
@@ -82,15 +91,20 @@ CGRect offsetRectToCenterOnOrigin(CGRect rect);
 bool hitTestWithRect(CGRect rect, CGPoint point);
 
 // Draw Helper Methods
+void drawPoint(CGPoint point, CGColor color);
+
 void drawLine(CGPoint fromPoint, CGPoint toPoint, float lineWidth);
 // Draws Circle within rect with color
+void drawCircle(CGPoint center, float radius, CGColor color);
 void drawCircle(CGRect rect, CGColor color);
 // Draws rectangle of color within the coordinate and size
 void drawRect(CGRect rect, CGColor color);
 // Draws string at x,y with font
 void renderBitmapString(int x, int y, std::string *string, void *font);
 
-CGRect centerAtPoint(CGPoint center, CGRect rect) ;
+CGRect centerAtPoint(CGPoint center, CGRect rect);
+
+CGColor colorOfPixelAtPoint(CGPoint point);
 
 
 #endif /* CGGeometry_hpp */

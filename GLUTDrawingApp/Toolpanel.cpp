@@ -15,10 +15,66 @@
 #    include <glut.h>
 #endif
 
+void Toolpanel::addButton(CGButton* button) {
+    
+    float yPosition = frame.origin.y + topPadding;
+    float xPostion = frame.origin.x;
+    int numberOfButtons = (int)buttons.size();
+    if (numberOfButtons > 0) {
+        // Get Last Button
+        CGButton *button = buttons[numberOfButtons - 1];
+        xPostion = button->frame.origin.x + button->frame.size.width;
+    }
+    
+    xPostion += padding;
+    
+    button->frame.origin.x = xPostion;
+    button->frame.origin.y = yPosition;
+    
+    buttons.push_back(button);
+    addSubview(button);
+}
 
+void Toolpanel::wasClicked(CGPoint point) {
+    
+    std::vector<CGButton*>::iterator iterator = buttons.begin();
+    CGButton *selectedColorButton = NULL;
+    int index = 0;
+    int selectedIndex = -1;
+    for (iterator = buttons.begin(); iterator != buttons.end(); iterator++) {
+        CGView *clickedView = (*iterator)->hitTest(point);
+        (*iterator)->controlState = ControlStateNormal;
+        
+        if (clickedView != NULL) {
+            try {
+                selectedColorButton = dynamic_cast<CGButton*>(clickedView);
+                selectedIndex = index;
+            } catch (std::exception& e) {
+            }
+        } else {
+            
+        }
+        
+        index++;
+    }
+    
+    if (selectedColorButton != NULL) {
+        selectedColorButton->controlState = ControlStateSelected;
+        action(this, selectedIndex, selectedColorButton);
+        //selectedColorDidChange(selectedColorButton->backgroundColor);
+        
+    }
 
+    
+    
+    
+    
+    
+    
+    
+}
 
  void Toolpanel::draw() {
-    drawRect(frame, CGColorMakeWithRGB(50, 50, 50));
+    drawRect(frame, backgroundColor);
      CGView::draw();
 }

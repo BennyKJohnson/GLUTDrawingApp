@@ -28,7 +28,7 @@ void ColorButton::draw() {
     
     drawCircle(frame, backgroundColor);
     
-    CGButton::draw();
+   // CGButton::draw();
 }
 void ColorButton::wasClicked() {
     std::cout << "Color button was clicked";

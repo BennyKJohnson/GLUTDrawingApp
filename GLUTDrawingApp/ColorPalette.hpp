@@ -32,6 +32,7 @@ public:
     int padding;
     int yPadding;
     void wasClicked(CGPoint point);
+    int buttonsPerRow;
     ColorChangeFunction delegate;
     
 };
