@@ -10,5 +10,5 @@
 
 void Line::draw() {
     setContextColor(color);
-    drawLine(fromPoint, toPoint, 5);
+    drawLine(fromPoint, toPoint, width);
 }

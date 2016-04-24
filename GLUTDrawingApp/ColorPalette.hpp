@@ -34,7 +34,7 @@ public:
     void wasClicked(CGPoint point);
     int buttonsPerRow;
     ColorChangeFunction delegate;
-    
+    void selectColorAtIndex(int index);
 };
 
 #endif /* ColorPalette_hpp */

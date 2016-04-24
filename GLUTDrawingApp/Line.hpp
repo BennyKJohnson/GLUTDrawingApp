@@ -16,11 +16,13 @@
 class Line: public Drawable {
     
 public:
+    int width;
     CGPoint fromPoint;
     CGPoint toPoint;
-    Line(CGPoint fromPoint, CGPoint toPoint) : Drawable() {
+    Line(CGPoint fromPoint, CGPoint toPoint, int width) : Drawable() {
         this->fromPoint = fromPoint;
         this->toPoint = toPoint;
+        this->width = width;
     }
     void draw();
     

@@ -23,6 +23,14 @@
 #include "Canvas.hpp"
 #include "Toolpanel.hpp"
 
+struct Color {
+    std::string name;
+    CGColor color;
+    Color(std::string colorName, CGColor colour) {
+        name = colorName;
+        color = colour;
+    }
+};
 
 int mainWindow;
 Toolbar *toolbar;
@@ -30,6 +38,13 @@ Toolpanel *shapePanel;
 ColorPalette *colorPalette;
 CGView *contentView;
 Canvas *canvas;
+std::vector<Color> colors;
+
+enum ContextMenu {
+    Clear,
+    Exit
+};
+
 
 
 void setOGLProjection(int width, int height) {
@@ -93,7 +108,63 @@ void render(void){
     glFlush();
     
 }
+void contextMenuHandler(int value) {
+    
+    ContextMenu option = static_cast<ContextMenu>(value);
+    switch (option) {
+        case Clear:
+            canvas->clear();
+            windowShouldRedraw();
+            break;
+        case Exit:
+            exit(0);
+    }
+}
 
+void lineWidthMenuHandler(int value) {
+    canvas->lineWidth = value;
+}
+
+void colorMenuHandler(int value) {
+    colorPalette->selectColorAtIndex(value);
+    
+    
+    
+}
+void addColor(Color color) {
+    colors.push_back(color);
+}
+
+void createContextMenu() {
+
+    int colorMenu = glutCreateMenu(colorMenuHandler);
+    // Create Color Menu
+    for (int i = 0; i < colors.size(); i++) {
+        glutAddMenuEntry(colors[i].name.c_str(), i);
+    }
+    
+    int lineWidthMenu = glutCreateMenu(lineWidthMenuHandler);
+    glutAddMenuEntry("1", 1);
+    glutAddMenuEntry("2", 2);
+    glutAddMenuEntry("3", 3);
+    glutAddMenuEntry("4", 4);
+    glutAddMenuEntry("5", 5);
+
+    
+    glutCreateMenu(contextMenuHandler);
+    glutAddSubMenu("Colors", colorMenu);
+    glutAddSubMenu("Line width", lineWidthMenu);
+    glutAddMenuEntry("Clear", ContextMenu::Clear);
+    glutAddMenuEntry("Exit", ContextMenu::Exit);
+    /*
+    glutAddSubMenu("Clear", ContextMenu::Clear);
+    glutAddSubMenu("Exit", ContextMenu::Exit);
+     */
+    
+    // Set the menu to right click
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+}
 
 
 
@@ -111,7 +182,18 @@ void selectedShapeToolDidChange(Toolpanel *toolPanel,int index, CGButton *button
     canvas->setDrawingTool(selectedTool);
 }
 
+void setupColors() {
+    colors.push_back(Color("Blue", CGColorSimpleBlue()));
+    colors.push_back(Color("Orange", CGColorSimpleOrange()));
+    colors.push_back(Color("Yellow", CGColorSimpleYellow()));
+    colors.push_back(Color("Green", CGColorSimpleGreen()));
+    colors.push_back(Color("Cyan", CGColorSimpleCyan()));
+    colors.push_back(Color("Pink", CGColorSimpleRed()));
+    colors.push_back(Color("Red", CGColorRed()));
+}
+
 void initOpenGL() {
+    setupColors();
     
     CGRect windowRect = getWindowRect();
     int statusBarHeight = 100;
@@ -123,7 +205,7 @@ void initOpenGL() {
     colorPalette = new ColorPalette(CGRectMake(0, yPosition, 200,100));
     colorPalette->shouldHandleMouseEvent = true;
     colorPalette->delegate = selectedColorDidChange;
-    
+    /*
     colorPalette->addColor(CGColorSimpleBlue());
     colorPalette->addColor(CGColorSimpleOrange());
     colorPalette->addColor(CGColorSimpleYellow());
@@ -131,7 +213,11 @@ void initOpenGL() {
     colorPalette->addColor(CGColorSimpleCyan());
     colorPalette->addColor(CGColorSimpleRed());
     colorPalette->addColor(CGColorRed());
-
+     */
+    for (int i = 0; i < colors.size(); i++) {
+        colorPalette->addColor(colors[i].color);
+    }
+    
     // ToolPalette
     Toolpanel *toolPanel = new Toolpanel(CGRectMake(200, yPosition, 300, 100));
     toolPanel->backgroundColor = CGColorMakeWithRGB(60, 60, 60);
@@ -177,7 +263,10 @@ void initOpenGL() {
 
     glutDisplayFunc(render);
     glutReshapeFunc(resize);
+    
+    
     glutMouseFunc(mouseHandler);
+    createContextMenu();
 }
 
 

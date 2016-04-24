@@ -24,6 +24,18 @@ void ColorPalette::selectedColorDidChange(CGColor color) {
     delegate(color);
 }
 
+void ColorPalette::selectColorAtIndex(int index) {
+    std::vector<ColorButton*>::iterator iterator = colorButtons.begin();
+    
+    for (iterator = colorButtons.begin(); iterator != colorButtons.end(); iterator++) {
+        (*iterator)->controlState = ControlStateNormal;
+    }
+    
+    ColorButton *button = colorButtons[index];
+    button->controlState = ControlStateSelected;
+    selectedColorDidChange(button->backgroundColor);
+}
+
 void ColorPalette::addColor(CGColor color) {
     
     colors.push_back(color);

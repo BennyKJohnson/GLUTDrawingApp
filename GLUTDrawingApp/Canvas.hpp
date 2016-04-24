@@ -32,11 +32,14 @@ public:
     Canvas(CGRect rect) : CGView(rect) {
         shouldHandleMouseEvent = true;
         currentTool = DrawingToolLine;
+        lineWidth = 5;
     };
+    int lineWidth;
     void draw();
     void wasClicked(CGPoint point);
     void setDrawingTool(DrawingTool tool);
     void boundaryFill(CGPoint point, CGColor color, CGColor boundaryColor);
+    void clear();
     CGColor color;
     
     std::vector<CGPoint> positions;

@@ -12,6 +12,7 @@
 #include "Line.hpp"
 #include "Circle.hpp"
 #include "Point.hpp"
+#include "Rectangle.hpp"
 #include <math.h>
 
 void Canvas::draw() {
@@ -114,7 +115,7 @@ void Canvas::addPosition(CGPoint point) {
             }
             case DrawingToolLine:
             {
-                Line *line = new Line(positions[0], positions[1]);
+                Line *line = new Line(positions[0], positions[1], lineWidth);
                 line->color = color;
                 elements.push_back(line);
                 
@@ -130,8 +131,13 @@ void Canvas::addPosition(CGPoint point) {
                 break;
             }
             case DrawingToolRectangle:
-                break;
+            {
+                Rectangle *rectangle = new Rectangle(positions[0], positions[1]);
+                rectangle->color = color;
+                elements.push_back(rectangle);
                 
+                break;
+            }
             case DrawingToolCircle:
             {
                 // Get center
@@ -151,6 +157,11 @@ void Canvas::addPosition(CGPoint point) {
     }
     
     
+}
+
+void Canvas::clear() {
+    // Clear elements on canvas
+    elements.clear();
 }
 
 void Canvas::wasClicked(CGPoint point) {

@@ -7,3 +7,8 @@
 //
 
 #include "Rectangle.hpp"
+
+void Rectangle::draw() {
+    drawRect(rect, color);
+    
+}

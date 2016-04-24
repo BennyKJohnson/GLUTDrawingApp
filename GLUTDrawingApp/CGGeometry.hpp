@@ -19,6 +19,11 @@
 typedef struct CGPoint {
     float x;
     float y;
+    bool operator<(const CGPoint& rhs) const
+    {
+        return y <= rhs.y;
+    }
+    
 } CGPoint;
 
 typedef struct CGSize {
