@@ -9,8 +9,8 @@
 #include "Drawable.hpp"
 
 Drawable::Drawable() {
-
-    
+    type = ShapeTypeLine;
+    borderWidth = 10;
 }
 
 void Drawable::draw() {

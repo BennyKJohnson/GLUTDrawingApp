@@ -36,6 +36,12 @@ void ColorPalette::selectColorAtIndex(int index) {
     selectedColorDidChange(button->backgroundColor);
 }
 
+void ColorPalette::setCustomColor(CGColor color) {
+    // Get Last button
+    int buttonIndex = (int)colorButtons.size() - 1;
+    ColorButton *customColorButton = colorButtons[buttonIndex];
+    customColorButton->backgroundColor = color;
+}
 void ColorPalette::addColor(CGColor color) {
     
     colors.push_back(color);
@@ -45,7 +51,6 @@ void ColorPalette::addColor(CGColor color) {
     int colNumber = numberOfColors % buttonsPerRow;
     
     int xPosition = frame.origin.x + (padding * colNumber);
-    
     int yPosition = frame.origin.y + yPadding + (rowNumber * (colorWidth + yPadding));
     
     // Create Color Button
@@ -55,8 +60,6 @@ void ColorPalette::addColor(CGColor color) {
     colorButton->backgroundColor = color;
     addSubview(colorButton);
     colorButtons.push_back(colorButton);
-    
-    
 }
 
 void ColorPalette::wasClicked(CGPoint point) {

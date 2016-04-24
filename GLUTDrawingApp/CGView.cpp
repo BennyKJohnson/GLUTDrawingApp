@@ -82,7 +82,10 @@ CGView* CGView::hitTest(CGPoint point) {
 }
 
 void CGView::wasClicked(CGPoint point) {
-    mouseHandler(this);
+    if (mouseHandler != NULL) {
+        mouseHandler(this);
+
+    }
 }
 
 void CGView::addSubview(CGView* view) {

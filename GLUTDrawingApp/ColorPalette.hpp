@@ -35,6 +35,7 @@ public:
     int buttonsPerRow;
     ColorChangeFunction delegate;
     void selectColorAtIndex(int index);
+    void setCustomColor(CGColor color);
 };
 
 #endif /* ColorPalette_hpp */

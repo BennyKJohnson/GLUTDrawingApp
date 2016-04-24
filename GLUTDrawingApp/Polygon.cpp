@@ -17,9 +17,15 @@
 void Polygon::draw() {
     setContextColor(color);
     
+    if(type == ShapeTypeLine) {
+        setLineWidth(borderWidth);
+        glBegin(GL_LINE_LOOP);
+        
+    } else {
+        glBegin(GL_POLYGON);// Begin drawing of polygon
+
+    }
     
-    
-    glBegin(GL_POLYGON);// Begin drawing of polygon
 
     for (int i = 0; i < numberOfPoints; i++) {
         CGPoint point = corners[i];

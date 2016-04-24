@@ -9,5 +9,5 @@
 #include "Point.hpp"
 
 void Point::draw() {
-    drawPoint(location, color);
+    drawPoint(location, color, borderWidth);
 }

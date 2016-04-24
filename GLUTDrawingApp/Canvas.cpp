@@ -13,6 +13,8 @@
 #include "Circle.hpp"
 #include "Point.hpp"
 #include "Rectangle.hpp"
+#include "Fill.hpp"
+
 #include <math.h>
 
 void Canvas::draw() {
@@ -41,6 +43,10 @@ int drawingToolPointsRequired(DrawingTool tool) {
             break;
         case DrawingToolCircle:
             return 2;
+        case DrawingToolColorPicker:
+            return 1;
+        case DrawingToolFill:
+            return 1;
     }
 }
 
@@ -63,9 +69,10 @@ CGPoint* copyPointsToArray(std::vector<CGPoint> points) {
 void Canvas::boundaryFill(CGPoint point, CGColor fillColor, CGColor boundaryColor) {
     
     CGColor currentColor = colorOfPixelAtPoint(point);
-    
-    if (currentColor != boundaryColor) {
-        drawPoint(point, fillColor);
+    drawPoint(point, fillColor, 40);
+    /*
+    if (currentColor == boundaryColor) {
+        drawPoint(point, fillColor,1);
         
         CGPoint rightPoint = point;
         rightPoint.x += 1;
@@ -85,6 +92,7 @@ void Canvas::boundaryFill(CGPoint point, CGColor fillColor, CGColor boundaryColo
         boundaryFill(topPoint, fillColor, boundaryColor);
 
     }
+     */
 }
 
 void Canvas::addPosition(CGPoint point) {
@@ -94,23 +102,15 @@ void Canvas::addPosition(CGPoint point) {
     
     if (positions.size() == drawingToolPointsRequired(currentTool)) {
 
-    
-
         switch (currentTool) {
             case DrawingToolPoint:
             {
                 
                 Point *drawPoint = new Point(point);
                 drawPoint->color = color;
+                drawPoint->borderWidth = (float)pointSize;
                 elements.push_back(drawPoint);
-                
-                /*
-                // Get color at point
-                CGColor color = colorOfPixelAtPoint(point);
-                std::cout << "Picked color " << color.r << " " << color.g << " " << color.b << std::endl;
-                
-                */
-               // int i = 0;
+              
                 break;
             }
             case DrawingToolLine:
@@ -126,6 +126,7 @@ void Canvas::addPosition(CGPoint point) {
                 // Create Triangle
                 Polygon *triangle = new Polygon(copyPointsToArray(positions), 3);
                 triangle->color = color;
+                triangle->borderWidth = (float)lineWidth;
                 elements.push_back(triangle);
                 
                 break;
@@ -134,6 +135,8 @@ void Canvas::addPosition(CGPoint point) {
             {
                 Rectangle *rectangle = new Rectangle(positions[0], positions[1]);
                 rectangle->color = color;
+                rectangle->borderWidth = (float)lineWidth;
+
                 elements.push_back(rectangle);
                 
                 break;
@@ -144,9 +147,32 @@ void Canvas::addPosition(CGPoint point) {
                 CGPoint center = positions[0];
                 CGPoint outerPoint = positions[1];
                 
-                float distance = sqrtf(powf((outerPoint.x - center.y), 2) + powf((outerPoint.y - center.y), 2));
+                float distance = sqrtf(powf((outerPoint.x - center.x), 2) + powf((outerPoint.y - center.y), 2));
                 Circle *circle = new Circle(center, distance);
+                circle->borderWidth = (float)lineWidth;
+                circle->color = color;
                 elements.push_back(circle);
+            }
+            case DrawingToolColorPicker:
+            {
+                // Get color at point
+                CGColor color = colorOfPixelAtPoint(point);
+                std::cout << "Picked color " << color.r << " " << color.g << " " << color.b << std::endl;
+                
+                if(colorDelegate != NULL) {
+                    colorDelegate(color);
+                }
+                break;
+            }
+            case DrawingToolFill:
+            {
+                Fill *fill = new Fill(positions[0]);
+                fill->color = color;
+                fill->boundColor = colorOfPixelAtPoint(positions[0]);
+                elements.push_back(fill);
+                //boundaryFill(positions[0], color, colorOfPixelAtPoint(positions[0]));
+                
+                break;
             }
 
         }
@@ -165,20 +191,5 @@ void Canvas::clear() {
 }
 
 void Canvas::wasClicked(CGPoint point) {
-    
-    std::cout << "Canvas was clicked";
-    
     addPosition(point);
-    /*
-    // Add triangle
-    CGPoint v1 = CGPointMake(0, 100);
-    CGPoint v2 = CGPointMake(0, 200);
-    CGPoint v3 = CGPointMake(100, 200);
-    
-    CGPoint *trianglePoints = new CGPoint[3];
-    trianglePoints[0] = v1;
-    trianglePoints[1] = v2;
-    trianglePoints[2] = v3;
-    */
-
 }

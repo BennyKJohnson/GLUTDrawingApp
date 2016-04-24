@@ -15,14 +15,18 @@
 #include <vector>
 #include "Drawable.hpp"
 
+
 typedef enum DrawingTool {
     DrawingToolPoint,
     DrawingToolLine,
     DrawingToolTriangle,
     DrawingToolRectangle,
-    DrawingToolCircle
+    DrawingToolCircle,
+    DrawingToolColorPicker,
+    DrawingToolFill
 } DrawingTool;
 
+typedef void (*ColorChangeFunction)(CGColor);
 
 class Canvas: public CGView {
     void addPosition(CGPoint point);
@@ -35,12 +39,15 @@ public:
         lineWidth = 5;
     };
     int lineWidth;
+    int pointSize;
     void draw();
     void wasClicked(CGPoint point);
     void setDrawingTool(DrawingTool tool);
     void boundaryFill(CGPoint point, CGColor color, CGColor boundaryColor);
     void clear();
     CGColor color;
+    ColorChangeFunction colorDelegate;
+
     
     std::vector<CGPoint> positions;
 };

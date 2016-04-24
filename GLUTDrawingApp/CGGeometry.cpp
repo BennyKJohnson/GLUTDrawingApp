@@ -87,6 +87,24 @@ void drawCircle(CGPoint center, float radius, CGColor color) {
     glPopMatrix();
 }
 
+void drawLineCircle(CGPoint center, float radius, CGColor color) {
+    setContextColor(color);
+    
+    glPushMatrix();
+    glTranslatef(center.x, center.y,0);
+    
+    glBegin(GL_LINE_LOOP);
+    
+    for (int i = 0; i <= 360; i++) {
+        float x = radius * cosf(degreesToRadians(i));
+        float y = radius * sinf(degreesToRadians(i));
+        glVertex2f(x,y);//output vertex
+    }
+    
+    glEnd();
+    glPopMatrix();
+}
+
 void drawCircle(CGRect rect, CGColor color)
 {
     
@@ -96,8 +114,8 @@ void drawCircle(CGRect rect, CGColor color)
     drawCircle(center, radius, color);
 }
 
-void drawPoint(CGPoint point, CGColor color) {
-    
+void drawPoint(CGPoint point, CGColor color, float pointSize) {
+    glPointSize(pointSize);
     setContextColor(color);
     
     glBegin(GL_POINTS);
@@ -106,7 +124,11 @@ void drawPoint(CGPoint point, CGColor color) {
     
 }
 
-
+void drawPoint(CGPoint point) {
+    glBegin(GL_POINTS);
+    glVertex2f(point.x, point.y);
+    glEnd();
+}
 
 bool hitTestWithRect(CGRect rect, CGPoint point) {
     
@@ -139,12 +161,22 @@ void drawRect(CGRect rect, CGColor color) {
     
 }
 
+CGRect getWindowRect() {
+    int x = glutGet(GLUT_WINDOW_X);
+    int y = glutGet(GLUT_WINDOW_Y);
+    int width = glutGet(GLUT_WINDOW_WIDTH);
+    int height = glutGet(GLUT_WINDOW_HEIGHT);
+    
+    return CGRectMake((float)x, (float)y, (float)width, (float)height);
+}
+
 CGColor colorOfPixelAtPoint(CGPoint point) {
+   // CGRect window = getWindowRect();
     
     // Get Color
     glReadBuffer(GL_FRONT);
     unsigned char color[3];
-    glReadPixels((int)point.x, (int)point.y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, color);
+    glReadPixels((int)point.x,600 - (int)point.y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
     return CGColorMakeWithRGB((int)color[0], (int)color[1], (int)color[2]);
 }
 
@@ -188,6 +220,10 @@ void renderBitmapString(int x, int y, std::string *string, void *font) {
 }
 
 
+void renderBitmapString(int x, int y, std::string *string) {
+    renderBitmapString(x, y, string, GLUT_BITMAP_HELVETICA_18);
+}
+
 
 CGPoint CGPointMake(float x, float y) {
     CGPoint point;
@@ -197,6 +233,18 @@ CGPoint CGPointMake(float x, float y) {
     return point;
 }
 
+void setDrawingModeToLine() {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+}
+void setDrawingModeToFilled() {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+}
+
+void setLineWidth(float width) {
+    glLineWidth(width);
+}
 
 void drawLine(CGPoint fromPoint, CGPoint toPoint, float width) {
     // Set line width
@@ -254,6 +302,10 @@ CGColor CGColorSimpleRed() {
 
 CGColor CGColorSimpleOrange() {
     return CGColorMakeWithRGB(255,205,129);
+}
+
+CGColor CGColorDarkGray() {
+    return CGColorMakeWithRGB(50, 50, 50);
 }
 
 CGColor CGColorRed() {

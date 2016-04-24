@@ -12,11 +12,19 @@
 #include <stdio.h>
 #include "CGGeometry.hpp"
 
+typedef enum ShapeType {
+   ShapeTypeLine,
+    ShapeTypeFilled
+} ShapeType;
+
+
 class Drawable {
     
 public:
     CGColor color;
+    ShapeType type;
     Drawable();
+    float borderWidth;
     virtual void draw();
 };
 

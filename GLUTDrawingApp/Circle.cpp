@@ -15,5 +15,10 @@
 #endif
 
 void Circle::draw() {
-    drawCircle(center, radius, color);
+    if (type == ShapeTypeLine) {
+        setLineWidth(borderWidth);
+        drawLineCircle(center, radius, color);
+    } else {
+        drawCircle(center, radius, color);
+    }
 }

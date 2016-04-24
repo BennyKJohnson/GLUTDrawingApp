@@ -17,7 +17,7 @@ class Point: public Drawable {
     
 public:
     CGPoint location;
-   
+    
     Point(CGPoint point) : Drawable() {
         location = point;
     }

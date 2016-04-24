@@ -23,6 +23,8 @@
 #include "Canvas.hpp"
 #include "Toolpanel.hpp"
 
+using namespace std;
+
 struct Color {
     std::string name;
     CGColor color;
@@ -78,27 +80,18 @@ void mouseHandler(int button, int state, int x, int y) {
 }
 
 void resize(int width, int height) {
-    
-    //  int width = glutGet(GLUT_WINDOW_WIDTH);
-    // int height = glutGet(GLUT_WINDOW_HEIGHT);
-    
+ 
     setOGLProjection(width, height);
 }
 
 
-CGRect getWindowRect() {
-    int x = glutGet(GLUT_WINDOW_X);
-    int y = glutGet(GLUT_WINDOW_Y);
-    int width = glutGet(GLUT_WINDOW_WIDTH);
-    int height = glutGet(GLUT_WINDOW_HEIGHT);
-    
-    return CGRectMake((float)x, (float)y, (float)width, (float)height);
-}
+
 
 void render(void){
     
     // Set background color to white and opaque
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    CGColor backgroundColor = CGColorDarkGray();
+    glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
     
     // Clear the buffer
     glClear(GL_COLOR_BUFFER_BIT);
@@ -127,10 +120,13 @@ void lineWidthMenuHandler(int value) {
 
 void colorMenuHandler(int value) {
     colorPalette->selectColorAtIndex(value);
-    
-    
-    
 }
+
+void didChangePointSize(int value) {
+    canvas->pointSize = value;
+
+}
+
 void addColor(Color color) {
     colors.push_back(color);
 }
@@ -150,10 +146,18 @@ void createContextMenu() {
     glutAddMenuEntry("4", 4);
     glutAddMenuEntry("5", 5);
 
+    int pointSizeMenu = glutCreateMenu(didChangePointSize);
+    glutAddMenuEntry("1", 1);
+    glutAddMenuEntry("2", 2);
+    glutAddMenuEntry("4", 4);
+    glutAddMenuEntry("8", 8);
+    glutAddMenuEntry("16", 16);
     
     glutCreateMenu(contextMenuHandler);
     glutAddSubMenu("Colors", colorMenu);
     glutAddSubMenu("Line width", lineWidthMenu);
+    glutAddSubMenu("Point Size", pointSizeMenu);
+
     glutAddMenuEntry("Clear", ContextMenu::Clear);
     glutAddMenuEntry("Exit", ContextMenu::Exit);
     /*
@@ -175,11 +179,25 @@ void selectedColorDidChange(CGColor color) {
     
 }
 
+void canvasDidPickCustomColor(CGColor color) {
+    std::cout << "Canvas Picked custom color" << endl;
+    colorPalette->setCustomColor(color);
+}
+
+
 void selectedShapeToolDidChange(Toolpanel *toolPanel,int index, CGButton *button) {
-    std::cout << "Selected Shape Tool changed " << index;
-    
-    DrawingTool selectedTool = static_cast<DrawingTool>(index);
-    canvas->setDrawingTool(selectedTool);
+    std::cout << "Selected Shape Tool changed " << index << endl;
+    if (index < 7) {
+        DrawingTool selectedTool = static_cast<DrawingTool>(index);
+        canvas->setDrawingTool(selectedTool);
+    } else if (index == 8) {
+        canvas->clear();
+
+        
+    } else if(index == 9) {
+        exit(0);
+    }
+  
 }
 
 void setupColors() {
@@ -189,7 +207,8 @@ void setupColors() {
     colors.push_back(Color("Green", CGColorSimpleGreen()));
     colors.push_back(Color("Cyan", CGColorSimpleCyan()));
     colors.push_back(Color("Pink", CGColorSimpleRed()));
-    colors.push_back(Color("Red", CGColorRed()));
+  //  colors.push_back(Color("Red", CGColorRed()));
+    colors.push_back(Color("Custom Color", CGColorDarkGray()));
 }
 
 void initOpenGL() {
@@ -205,18 +224,11 @@ void initOpenGL() {
     colorPalette = new ColorPalette(CGRectMake(0, yPosition, 200,100));
     colorPalette->shouldHandleMouseEvent = true;
     colorPalette->delegate = selectedColorDidChange;
-    /*
-    colorPalette->addColor(CGColorSimpleBlue());
-    colorPalette->addColor(CGColorSimpleOrange());
-    colorPalette->addColor(CGColorSimpleYellow());
-    colorPalette->addColor(CGColorSimpleGreen());
-    colorPalette->addColor(CGColorSimpleCyan());
-    colorPalette->addColor(CGColorSimpleRed());
-    colorPalette->addColor(CGColorRed());
-     */
+
     for (int i = 0; i < colors.size(); i++) {
         colorPalette->addColor(colors[i].color);
     }
+
     
     // ToolPalette
     Toolpanel *toolPanel = new Toolpanel(CGRectMake(200, yPosition, 300, 100));
@@ -234,6 +246,7 @@ void initOpenGL() {
     lineButton->backgroundColor = CGColorBlue();
     
     CGButton *triangleButton = new CGButton(buttonRect);
+    triangleButton->title = new std::string("T");
     triangleButton->backgroundColor = CGColorGreen();
     
     CGButton *rectangleButton = new CGButton(buttonRect);
@@ -242,31 +255,53 @@ void initOpenGL() {
     CGButton *circleButton = new CGButton(buttonRect);
     circleButton->backgroundColor = CGColorSimpleOrange();
     
+    CGButton *colorPickerButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
+    colorPickerButton->title = new std::string("PICKER");
+    colorPickerButton->backgroundColor = CGColorSimpleRed();
+    
+    CGButton *fillButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
+    fillButton->title = new std::string("FILL");
+    fillButton->backgroundColor = CGColorSimpleRed();
+    
+    CGButton *clearButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
+    clearButton->title = new std::string("CLEAR");
+    clearButton->backgroundColor = CGColorSimpleBlue();
+    
+    CGButton *exitButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
+    exitButton->title = new std::string("EXIT");
+    exitButton->backgroundColor = CGColorSimpleGreen();
+    
     toolPanel->addButton(pointButton);
     toolPanel->addButton(lineButton);
     toolPanel->addButton(triangleButton);
     toolPanel->addButton(rectangleButton);
     toolPanel->addButton(circleButton);
+    toolPanel->addButton(colorPickerButton);
+    toolPanel->addButton(fillButton);
+
+    toolPanel->addButton(clearButton);
+    toolPanel->addButton(exitButton);
     
     toolbar->addSubview(colorPalette);
     toolbar->addSubview(toolPanel);
-    
     CGButton *colorPickerTool = new CGButton(buttonRect);
+
     
 
     canvas = new Canvas(CGRectMake(0, 0, windowRect.size.width, windowRect.size.height - 100));
     canvas->backgroundColor = CGColorWhite();
-    
+    canvas->colorDelegate = canvasDidPickCustomColor;
     // Add Views
     contentView->addSubview(canvas);
     contentView->addSubview(toolbar);
 
     glutDisplayFunc(render);
     glutReshapeFunc(resize);
-    
-    
     glutMouseFunc(mouseHandler);
     createContextMenu();
+    
+    // Set Default Color
+    colorPalette->selectColorAtIndex(0);
 }
 
 
@@ -279,7 +314,7 @@ int main(int argc, char * argv[]) {
     
     //Specify the Display Mode, this one means there is a single buffer and uses RGB to specify colors
     // glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE |GLUT_RGB);
-    
+
     //Set the window size
     glutInitWindowSize(800, 600);
     

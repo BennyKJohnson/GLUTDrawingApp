@@ -9,6 +9,14 @@
 #include "Rectangle.hpp"
 
 void Rectangle::draw() {
+    
+    if (type == ShapeTypeLine) {
+        setDrawingModeToLine();
+        setLineWidth(borderWidth);
+    }
+    
     drawRect(rect, color);
+    setDrawingModeToFilled();
+    
     
 }

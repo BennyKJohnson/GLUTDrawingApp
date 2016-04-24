@@ -16,6 +16,7 @@
 		6F046C6A1CBCAB47005D6726 /* CGView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C681CBCAB47005D6726 /* CGView.cpp */; };
 		6F046C6D1CBCB300005D6726 /* CGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6B1CBCB300005D6726 /* CGButton.cpp */; };
 		6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */; };
+		6FCE96241CCCF54600F28E02 /* Fill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE96221CCCF54600F28E02 /* Fill.cpp */; };
 		A3D3C78A1CC47286003350D9 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D3C7881CC47286003350D9 /* Circle.cpp */; };
 		A3D3C78D1CC48E3F003350D9 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D3C78B1CC48E3F003350D9 /* Point.cpp */; };
 		A3FB678D1CBDBB6600CB3A7A /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3FB678B1CBDBB6600CB3A7A /* Canvas.cpp */; };
@@ -55,6 +56,8 @@
 		6F046C6C1CBCB300005D6726 /* CGButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGButton.hpp; sourceTree = "<group>"; };
 		6F046C6E1CBCBF0D005D6726 /* ColorButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorButton.cpp; sourceTree = "<group>"; };
 		6F046C6F1CBCBF0D005D6726 /* ColorButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorButton.hpp; sourceTree = "<group>"; };
+		6FCE96221CCCF54600F28E02 /* Fill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fill.cpp; sourceTree = "<group>"; };
+		6FCE96231CCCF54600F28E02 /* Fill.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fill.hpp; sourceTree = "<group>"; };
 		A3D3C7881CC47286003350D9 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
 		A3D3C7891CC47286003350D9 /* Circle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
 		A3D3C78B1CC48E3F003350D9 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
@@ -134,16 +137,18 @@
 			children = (
 				A3FB678F1CBDBC6200CB3A7A /* Drawable.hpp */,
 				A3FB678E1CBDBC6200CB3A7A /* Drawable.cpp */,
-				A3FB67921CBDC77100CB3A7A /* Polygon.hpp */,
 				A3FB67981CBE18FA00CB3A7A /* Rectangle.hpp */,
 				A3FB67971CBE18FA00CB3A7A /* Rectangle.cpp */,
 				A3FB67951CBE169E00CB3A7A /* Line.hpp */,
 				A3FB67941CBE169E00CB3A7A /* Line.cpp */,
+				A3FB67921CBDC77100CB3A7A /* Polygon.hpp */,
 				A3FB67911CBDC77100CB3A7A /* Polygon.cpp */,
 				A3D3C7891CC47286003350D9 /* Circle.hpp */,
 				A3D3C7881CC47286003350D9 /* Circle.cpp */,
 				A3D3C78C1CC48E3F003350D9 /* Point.hpp */,
 				A3D3C78B1CC48E3F003350D9 /* Point.cpp */,
+				6FCE96221CCCF54600F28E02 /* Fill.cpp */,
+				6FCE96231CCCF54600F28E02 /* Fill.hpp */,
 			);
 			name = Drawables;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FCE96241CCCF54600F28E02 /* Fill.cpp in Sources */,
 				A3FB67D31CBF18B300CB3A7A /* Toolbar.cpp in Sources */,
 				6F046C551CBC8617005D6726 /* main.cpp in Sources */,
 				6F046C701CBCBF0D005D6726 /* ColorButton.cpp in Sources */,

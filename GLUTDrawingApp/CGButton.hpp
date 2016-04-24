@@ -27,8 +27,9 @@ class CGButton: public CGView {
 public:
     ControlState controlState;
     ActionFunction handler;
+    std::string *title;
     CGButton(CGRect rect) : CGView(rect) {
-        
+        title = NULL;
     };
     void draw();
     

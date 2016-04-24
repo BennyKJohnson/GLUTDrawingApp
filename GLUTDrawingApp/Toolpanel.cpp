@@ -17,10 +17,15 @@
 
 void Toolpanel::addButton(CGButton* button) {
     
-    float yPosition = frame.origin.y + topPadding;
-    float xPostion = frame.origin.x;
+    
     int numberOfButtons = (int)buttons.size();
-    if (numberOfButtons > 0) {
+    int rowNumber = numberOfButtons / itemsPerRow;
+    int colNumber = numberOfButtons % itemsPerRow;
+    
+    float yPosition = frame.origin.y + topPadding + (rowNumber * (button->frame.size.height + 10));
+    float xPostion = frame.origin.x;
+
+    if (colNumber > 0) {
         // Get Last Button
         CGButton *button = buttons[numberOfButtons - 1];
         xPostion = button->frame.origin.x + button->frame.size.width;

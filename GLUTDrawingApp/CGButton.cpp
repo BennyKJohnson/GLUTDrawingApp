@@ -14,5 +14,11 @@ void CGButton::draw() {
     
     drawRect(frame, backgroundColor);
     
+    if (title != NULL) {
+        // Draw Title
+        setContextColor(CGColorBlack());
+        renderBitmapString(frame.origin.x, frame.origin.y + 18, title);
+    }
+    
     // Once drawn the text is no longer required. So cleanup memory
 }

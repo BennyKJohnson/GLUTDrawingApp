@@ -29,10 +29,12 @@ public:
     Toolpanel(CGRect rect) : CGView(rect) {
         topPadding = 10;
         padding = 20;
+        itemsPerRow = 5;
         shouldHandleMouseEvent = true;
     };
     ButtonHandlerFunction action;
     void wasClicked(CGPoint point);
+    int itemsPerRow;
 
 };
 
