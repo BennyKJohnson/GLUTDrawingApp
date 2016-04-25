@@ -306,7 +306,6 @@ void initOpenGL() {
     toolbar->addSubview(colorPalette);
     toolbar->addSubview(toolPanel);
 
-
     canvas = new Canvas(CGRectMake(0, 0, windowRect.size.width, windowRect.size.height - 100));
     canvas->backgroundColor = CGColorWhite();
     canvas->colorDelegate = canvasDidPickCustomColor;
@@ -322,6 +321,10 @@ void initOpenGL() {
     
     // Set Default Color
     colorPalette->selectColorAtIndex(0);
+    // Set Default Drawing Tool
+    toolPanel->setSelectedButtonAtIndex(0);
+
+    
 }
 
 

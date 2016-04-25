@@ -36,6 +36,7 @@ public:
     ButtonHandlerFunction action;
     void wasClicked(CGPoint point);
     int itemsPerRow;
+    void setSelectedButtonAtIndex(int index);
 
 };
 

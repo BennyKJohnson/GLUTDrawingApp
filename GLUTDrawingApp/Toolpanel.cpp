@@ -40,6 +40,21 @@ void Toolpanel::addButton(CGButton* button) {
     addSubview(button);
 }
 
+void Toolpanel::setSelectedButtonAtIndex(int index) {
+      std::vector<CGButton*>::iterator iterator = buttons.begin();
+    for (iterator = buttons.begin(); iterator != buttons.end(); iterator++) {
+        (*iterator)->controlState = ControlStateNormal;
+
+    }
+    
+    CGButton *selectedButton = buttons[index];
+    if (selectedButton != NULL) {
+        selectedButton->controlState = ControlStateSelected;
+        action(this, index, selectedButton);
+    }
+    
+    
+}
 void Toolpanel::wasClicked(CGPoint point) {
     
     std::vector<CGButton*>::iterator iterator = buttons.begin();
