@@ -18,6 +18,7 @@
 class Toolpanel;
 typedef void (*ButtonHandlerFunction)(Toolpanel*,int, CGButton*);
 
+// Simple view that controls the layout of buttons
 class Toolpanel: public CGView {
     
 public:

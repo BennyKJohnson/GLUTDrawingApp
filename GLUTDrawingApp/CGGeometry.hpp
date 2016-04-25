@@ -97,20 +97,25 @@ CGRect offsetRectToCenterOnOrigin(CGRect rect);
 bool hitTestWithRect(CGRect rect, CGPoint point);
 void setDrawingModeToLine();
 void setDrawingModeToFilled();
+
 // Draw Helper Methods
 void drawPoint(CGPoint point, CGColor color, float pointSize);
 void drawPoint(CGPoint point);
 void setLineWidth(float width);
 void drawLine(CGPoint fromPoint, CGPoint toPoint, float lineWidth);
+
 // Draws Circle within rect with color
 void drawCircle(CGPoint center, float radius, CGColor color);
 void drawCircle(CGRect rect, CGColor color);
+
 // Draws rectangle of color within the coordinate and size
 void drawRect(CGRect rect, CGColor color);
 void drawTriangle(CGRect rect, bool filled);
+
 // Draws string at x,y with font
 void renderBitmapString(int x, int y, std::string *string, void *font);
 void renderBitmapString(int x, int y, std::string *string);
+
 CGRect getWindowRect();
 CGRect centerAtPoint(CGPoint center, CGRect rect);
 void drawLineCircle(CGPoint center, float radius, CGColor color);

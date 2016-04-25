@@ -20,13 +20,15 @@
 void Canvas::draw() {
     drawRect(frame, backgroundColor);
     
-    // Iterate through shapes
+    // Iterate through drawables
     std::vector<Drawable*>::iterator iterator = elements.begin();
     for (iterator = elements.begin(); iterator != elements.end(); iterator++) {
+        // Draw the current drawable on canvas
         (*iterator)->draw();
     }
 }
 
+// Get the number of positions required to use the current drawing tool
 int drawingToolPointsRequired(DrawingTool tool) {
     switch (tool) {
         case DrawingToolPoint:
@@ -60,12 +62,14 @@ int drawingToolPointsRequired(DrawingTool tool) {
     }
 }
 
+// Change the drawing tool and reset positions
 void Canvas::setDrawingTool(DrawingTool tool) {
     currentTool = tool;
     // Reset Points
     positions.clear();
 }
 
+// Helper method to convert vector into a CGPoint array
 CGPoint* copyPointsToArray(std::vector<CGPoint> points) {
     CGPoint *pointsArray = new CGPoint[(int)points.size()];
     
@@ -76,34 +80,6 @@ CGPoint* copyPointsToArray(std::vector<CGPoint> points) {
     return pointsArray;
 }
 
-void Canvas::boundaryFill(CGPoint point, CGColor fillColor, CGColor boundaryColor) {
-    
-    CGColor currentColor = colorOfPixelAtPoint(point);
-    drawPoint(point, fillColor, 40);
-    /*
-    if (currentColor == boundaryColor) {
-        drawPoint(point, fillColor,1);
-        
-        CGPoint rightPoint = point;
-        rightPoint.x += 1;
-        
-        CGPoint leftPoint = point;
-        leftPoint.x -= 1;
-        
-        CGPoint topPoint = point;
-        topPoint.y -= 1;
-        
-        CGPoint bottomPoint = point;
-        bottomPoint.y += 1;
-        
-        boundaryFill(leftPoint, fillColor, boundaryColor);
-        boundaryFill(rightPoint, fillColor, boundaryColor);
-        boundaryFill(bottomPoint, fillColor, boundaryColor);
-        boundaryFill(topPoint, fillColor, boundaryColor);
-
-    }
-     */
-}
 
 void Canvas::addPosition(CGPoint point) {
     

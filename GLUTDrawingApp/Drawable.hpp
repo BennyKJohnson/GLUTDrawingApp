@@ -17,7 +17,7 @@ typedef enum ShapeType {
     ShapeTypeFilled
 } ShapeType;
 
-
+// A class that defines properties of a drawable element for the canvas
 class Drawable {
     
 public:

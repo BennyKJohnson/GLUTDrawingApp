@@ -35,23 +35,27 @@ class Canvas: public CGView {
     void addPosition(CGPoint point);
     DrawingTool currentTool;
 public:
+    // Elements on the canvas that the user has drawn
     std::vector<Drawable*> elements;
     Canvas(CGRect rect) : CGView(rect) {
         shouldHandleMouseEvent = true;
         currentTool = DrawingToolLine;
         lineWidth = 5;
     };
+    // Current line width used by canvas for drawing
     int lineWidth;
+    // Current point size used by canvas for drawing
     int pointSize;
     void draw();
     void wasClicked(CGPoint point);
     void setDrawingTool(DrawingTool tool);
-    void boundaryFill(CGPoint point, CGColor color, CGColor boundaryColor);
+    // Clear the canvas by removing drawn elements
     void clear();
+    // Current color used by canvas
     CGColor color;
+    // Delegate for receiving custom color selected messages
     ColorChangeFunction colorDelegate;
-
-    
+    // Array of positions where the user has clicked the canvas
     std::vector<CGPoint> positions;
 };
 

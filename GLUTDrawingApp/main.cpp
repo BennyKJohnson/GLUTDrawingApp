@@ -167,7 +167,7 @@ void createContextMenu() {
 }
 
 
-
+// Called by the color palette when user selects a different color
 void selectedColorDidChange(CGColor color) {
     std::cout << "Color did change" << std::endl;
     canvas->color = color;
@@ -175,27 +175,30 @@ void selectedColorDidChange(CGColor color) {
     
 }
 
+// Canvas notifies when user have selected a color using color picker
 void canvasDidPickCustomColor(CGColor color) {
     std::cout << "Canvas Picked custom color" << endl;
     colorPalette->setCustomColor(color);
 }
 
-
+// Toolpanel notifies when a button was selected by user, this event is handle here
 void selectedShapeToolDidChange(Toolpanel *toolPanel,int index, CGButton *button) {
     std::cout << "Selected Shape Tool changed " << index << endl;
     if (index < 10) {
+        // Notify the canvas about selected drawing tool
         DrawingTool selectedTool = static_cast<DrawingTool>(index);
         canvas->setDrawingTool(selectedTool);
     } else if (index == 10) {
+        // Clear canvas
         canvas->clear();
-
-        
     } else if(index == 11) {
+        // Exit Program
         exit(0);
     }
   
 }
 
+// Setup available colors for the user to select from with provided labels
 void setupColors() {
     colors.push_back(Color("Blue", CGColorSimpleBlue()));
     colors.push_back(Color("Orange", CGColorSimpleOrange()));
@@ -244,7 +247,6 @@ void initOpenGL() {
     lineButton->backgroundColor = toolPanelColor;
     lineButton->icon = ShapeIconLine;
     
-    
     CGButton *triangleLineButton = new CGButton(buttonRect);
     triangleLineButton->backgroundColor = toolPanelColor;
     triangleLineButton->icon = ShapeIconTriangle;
@@ -252,9 +254,6 @@ void initOpenGL() {
     CGButton *triangleButton = new CGButton(buttonRect);
     triangleButton->backgroundColor = toolPanelColor;
     triangleButton->icon = ShapeIconTriangleFilled;
-    
-   
-
     
     CGButton *rectangleButton = new CGButton(buttonRect);
     rectangleButton->backgroundColor = toolPanelColor;

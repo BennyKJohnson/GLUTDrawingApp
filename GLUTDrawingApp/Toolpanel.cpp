@@ -69,14 +69,6 @@ void Toolpanel::wasClicked(CGPoint point) {
         //selectedColorDidChange(selectedColorButton->backgroundColor);
         
     }
-
-    
-    
-    
-    
-    
-    
-    
 }
 
  void Toolpanel::draw() {
