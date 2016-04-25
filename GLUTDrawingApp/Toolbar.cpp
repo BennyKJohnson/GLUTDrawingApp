@@ -11,6 +11,6 @@
 
 
 void Toolbar::draw() {
-    drawRect(frame, CGColorMakeWithRGB(50, 50, 50));
+    drawRect(frame, CGColorMakeWithRGB(60, 60, 60));
     CGView::draw();
 }

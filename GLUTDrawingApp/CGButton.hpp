@@ -19,6 +19,24 @@ typedef enum ControlState {
     ControlStateSelected
 } ControlState;
 
+typedef enum ButtonType {
+    ButtonTypeLight,
+    ButtonTypeDark
+} ButtonType;
+
+
+typedef enum ShapeIcon {
+    ShapeIconNone,
+    ShapeIconPoint,
+    ShapeIconLine,
+    ShapeIconTriangle,
+    ShapeIconTriangleFilled,
+    ShapeIconRectangle,
+    ShapeIconRectangleFilled,
+    ShapeIconCircle,
+    ShapeIconCircleFilled
+} ShapeIcon;
+
 class CGButton;
 typedef void (*ActionFunction)(CGButton);
 
@@ -30,7 +48,13 @@ public:
     std::string *title;
     CGButton(CGRect rect) : CGView(rect) {
         title = NULL;
+        type = ButtonTypeLight;
+        icon = ShapeIconNone;
+        tintColor = CGColorWhite();
     };
+    ButtonType type;
+    ShapeIcon icon;
+    CGColor tintColor;
     void draw();
     
 };

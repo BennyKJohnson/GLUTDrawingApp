@@ -107,6 +107,7 @@ void drawCircle(CGPoint center, float radius, CGColor color);
 void drawCircle(CGRect rect, CGColor color);
 // Draws rectangle of color within the coordinate and size
 void drawRect(CGRect rect, CGColor color);
+void drawTriangle(CGRect rect, bool filled);
 // Draws string at x,y with font
 void renderBitmapString(int x, int y, std::string *string, void *font);
 void renderBitmapString(int x, int y, std::string *string);

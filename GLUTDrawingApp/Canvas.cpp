@@ -38,11 +38,21 @@ int drawingToolPointsRequired(DrawingTool tool) {
         case DrawingToolTriangle:
             return 3;
             break;
+        case DrawingToolTriangleFilled:
+            return 3;
+            break;
         case DrawingToolRectangle:
+            return 2;
+            break;
+        case DrawingToolRectangleFilled:
             return 2;
             break;
         case DrawingToolCircle:
             return 2;
+            break;
+        case DrawingToolCircleFilled:
+            return 2;
+            break;
         case DrawingToolColorPicker:
             return 1;
         case DrawingToolFill:
@@ -131,6 +141,15 @@ void Canvas::addPosition(CGPoint point) {
                 
                 break;
             }
+            case DrawingToolTriangleFilled:
+            {
+                Polygon *triangle = new Polygon(copyPointsToArray(positions), 3);
+                triangle->color = color;
+                triangle->type = ShapeTypeFilled;
+                triangle->borderWidth = (float)lineWidth;
+                elements.push_back(triangle);
+                break;
+            }
             case DrawingToolRectangle:
             {
                 Rectangle *rectangle = new Rectangle(positions[0], positions[1]);
@@ -140,6 +159,19 @@ void Canvas::addPosition(CGPoint point) {
                 elements.push_back(rectangle);
                 
                 break;
+            }
+            case DrawingToolRectangleFilled:
+            {
+                Rectangle *rectangle = new Rectangle(positions[0], positions[1]);
+                rectangle->color = color;
+                rectangle->type = ShapeTypeFilled;
+                rectangle->borderWidth = (float)lineWidth;
+                
+                elements.push_back(rectangle);
+                
+                break;
+                
+                
             }
             case DrawingToolCircle:
             {
@@ -151,6 +183,20 @@ void Canvas::addPosition(CGPoint point) {
                 Circle *circle = new Circle(center, distance);
                 circle->borderWidth = (float)lineWidth;
                 circle->color = color;
+                elements.push_back(circle);
+                break;
+            }
+            case DrawingToolCircleFilled:
+            {
+                // Get center
+                CGPoint center = positions[0];
+                CGPoint outerPoint = positions[1];
+                
+                float distance = sqrtf(powf((outerPoint.x - center.x), 2) + powf((outerPoint.y - center.y), 2));
+                Circle *circle = new Circle(center, distance);
+                circle->borderWidth = (float)lineWidth;
+                circle->color = color;
+                circle->type = ShapeTypeFilled;
                 elements.push_back(circle);
             }
             case DrawingToolColorPicker:

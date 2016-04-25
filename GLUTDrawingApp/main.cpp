@@ -160,11 +160,7 @@ void createContextMenu() {
 
     glutAddMenuEntry("Clear", ContextMenu::Clear);
     glutAddMenuEntry("Exit", ContextMenu::Exit);
-    /*
-    glutAddSubMenu("Clear", ContextMenu::Clear);
-    glutAddSubMenu("Exit", ContextMenu::Exit);
-     */
-    
+
     // Set the menu to right click
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 
@@ -187,14 +183,14 @@ void canvasDidPickCustomColor(CGColor color) {
 
 void selectedShapeToolDidChange(Toolpanel *toolPanel,int index, CGButton *button) {
     std::cout << "Selected Shape Tool changed " << index << endl;
-    if (index < 7) {
+    if (index < 10) {
         DrawingTool selectedTool = static_cast<DrawingTool>(index);
         canvas->setDrawingTool(selectedTool);
-    } else if (index == 8) {
+    } else if (index == 10) {
         canvas->clear();
 
         
-    } else if(index == 9) {
+    } else if(index == 11) {
         exit(0);
     }
   
@@ -207,7 +203,7 @@ void setupColors() {
     colors.push_back(Color("Green", CGColorSimpleGreen()));
     colors.push_back(Color("Cyan", CGColorSimpleCyan()));
     colors.push_back(Color("Pink", CGColorSimpleRed()));
-  //  colors.push_back(Color("Red", CGColorRed()));
+    colors.push_back(Color("Red", CGColorRed()));
     colors.push_back(Color("Custom Color", CGColorDarkGray()));
 }
 
@@ -231,66 +227,91 @@ void initOpenGL() {
 
     
     // ToolPalette
-    Toolpanel *toolPanel = new Toolpanel(CGRectMake(200, yPosition, 300, 100));
+    Toolpanel *toolPanel = new Toolpanel(CGRectMake(200, yPosition, 400, 100));
     toolPanel->backgroundColor = CGColorMakeWithRGB(60, 60, 60);
     toolPanel->action = selectedShapeToolDidChange;
     
+    CGColor toolPanelColor = CGColorMakeWithRGB(60, 60, 60);
     int buttonSize = 35;
     CGRect buttonRect = CGRectMake(0, 0, buttonSize, buttonSize);
     
     // Create Tool Buttons
     CGButton *pointButton = new CGButton(buttonRect);
-    pointButton->backgroundColor = CGColorWhite();
+    pointButton->backgroundColor = toolPanelColor;
+    pointButton->icon = ShapeIconPoint;
     
     CGButton *lineButton = new CGButton(buttonRect);
-    lineButton->backgroundColor = CGColorBlue();
+    lineButton->backgroundColor = toolPanelColor;
+    lineButton->icon = ShapeIconLine;
+    
+    
+    CGButton *triangleLineButton = new CGButton(buttonRect);
+    triangleLineButton->backgroundColor = toolPanelColor;
+    triangleLineButton->icon = ShapeIconTriangle;
     
     CGButton *triangleButton = new CGButton(buttonRect);
-    triangleButton->title = new std::string("T");
-    triangleButton->backgroundColor = CGColorGreen();
+    triangleButton->backgroundColor = toolPanelColor;
+    triangleButton->icon = ShapeIconTriangleFilled;
+    
+   
+
     
     CGButton *rectangleButton = new CGButton(buttonRect);
-    rectangleButton->backgroundColor = CGColorSimpleCyan();
+    rectangleButton->backgroundColor = toolPanelColor;
+    rectangleButton->icon = ShapeIconRectangle;
+    
+    CGButton *rectangleFilledButton = new CGButton(buttonRect);
+    rectangleFilledButton->backgroundColor = toolPanelColor;
+    rectangleFilledButton->icon = ShapeIconRectangleFilled;
     
     CGButton *circleButton = new CGButton(buttonRect);
-    circleButton->backgroundColor = CGColorSimpleOrange();
+    circleButton->backgroundColor = toolPanelColor;
+    circleButton->icon = ShapeIconCircle;
     
+    CGButton *circleFilledButton = new CGButton(buttonRect);
+    circleFilledButton->backgroundColor = toolPanelColor;
+    circleFilledButton->icon = ShapeIconCircleFilled;
+
     CGButton *colorPickerButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
     colorPickerButton->title = new std::string("PICKER");
-    colorPickerButton->backgroundColor = CGColorSimpleRed();
+    colorPickerButton->backgroundColor = CGColorSimpleBlue();
     
     CGButton *fillButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
     fillButton->title = new std::string("FILL");
-    fillButton->backgroundColor = CGColorSimpleRed();
+    fillButton->backgroundColor = CGColorSimpleCyan();
     
     CGButton *clearButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
     clearButton->title = new std::string("CLEAR");
+    clearButton->type = ButtonTypeDark;
     clearButton->backgroundColor = CGColorSimpleBlue();
     
     CGButton *exitButton = new CGButton(CGRectMake(0, 0, 80, buttonSize));
     exitButton->title = new std::string("EXIT");
+    exitButton->type = ButtonTypeDark;
     exitButton->backgroundColor = CGColorSimpleGreen();
     
     toolPanel->addButton(pointButton);
     toolPanel->addButton(lineButton);
+    toolPanel->addButton(triangleLineButton);
     toolPanel->addButton(triangleButton);
     toolPanel->addButton(rectangleButton);
+    toolPanel->addButton(rectangleFilledButton);
     toolPanel->addButton(circleButton);
+    toolPanel->addButton(circleFilledButton);
     toolPanel->addButton(colorPickerButton);
     toolPanel->addButton(fillButton);
-
+    
     toolPanel->addButton(clearButton);
     toolPanel->addButton(exitButton);
     
     toolbar->addSubview(colorPalette);
     toolbar->addSubview(toolPanel);
-    CGButton *colorPickerTool = new CGButton(buttonRect);
 
-    
 
     canvas = new Canvas(CGRectMake(0, 0, windowRect.size.width, windowRect.size.height - 100));
     canvas->backgroundColor = CGColorWhite();
     canvas->colorDelegate = canvasDidPickCustomColor;
+    
     // Add Views
     contentView->addSubview(canvas);
     contentView->addSubview(toolbar);

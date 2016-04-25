@@ -20,8 +20,11 @@ typedef enum DrawingTool {
     DrawingToolPoint,
     DrawingToolLine,
     DrawingToolTriangle,
+    DrawingToolTriangleFilled,
     DrawingToolRectangle,
+    DrawingToolRectangleFilled,
     DrawingToolCircle,
+    DrawingToolCircleFilled,
     DrawingToolColorPicker,
     DrawingToolFill
 } DrawingTool;

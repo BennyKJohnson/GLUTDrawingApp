@@ -41,16 +41,20 @@ void ColorPalette::setCustomColor(CGColor color) {
     int buttonIndex = (int)colorButtons.size() - 1;
     ColorButton *customColorButton = colorButtons[buttonIndex];
     customColorButton->backgroundColor = color;
-}
-void ColorPalette::addColor(CGColor color) {
     
+    selectColorAtIndex(buttonIndex);
+}
+
+void ColorPalette::addColor(CGColor color) {
+    int numberOfColors = (int)colors.size();
+
+    int rowNumber = numberOfColors / buttonsPerRow;
+    int colNumber = (numberOfColors) % buttonsPerRow;
     colors.push_back(color);
     
-    int numberOfColors = (int)colors.size();
-    int rowNumber = numberOfColors / buttonsPerRow;
-    int colNumber = numberOfColors % buttonsPerRow;
+
     
-    int xPosition = frame.origin.x + (padding * colNumber);
+    int xPosition = frame.origin.x + 10 + (padding * colNumber);
     int yPosition = frame.origin.y + yPadding + (rowNumber * (colorWidth + yPadding));
     
     // Create Color Button
@@ -95,36 +99,6 @@ void ColorPalette::wasClicked(CGPoint point) {
 void ColorPalette::draw() {
     
     drawRect(frame, CGColorMakeWithRGB(60, 60, 60));
-    
-    /*
-    std::vector<CGColor>::iterator iterator = colors.begin();
-    
-    int colorIndex = 0;
-    int colorWidth = 35;
-    int padding = colorWidth + 10;
-    int yPadding = 10;
-    
-    
-    int xPosition = frame.origin.x + padding;
-    int yPosition = frame.origin.y + yPadding;
-    
-    for (iterator = colors.begin(); iterator != colors.end(); iterator++) {
-        // Draw Circle to represent Color
-        CGRect circleRect = CGRectMake(xPosition, yPosition, colorWidth, colorWidth);
-        if (selectedColorIndex == colorIndex) {
-            CGRect selectedCircleRect = CGRectMake(xPosition, yPosition, colorWidth + 5, colorWidth + 5);
-            selectedCircleRect = centerAtPoint(getCenter(circleRect), selectedCircleRect);
-            
-            // Draw White Circle Border
-            drawCircle(selectedCircleRect, CGColorWhite());
-        }
-
-        drawCircle(circleRect, *iterator);
-        
-        colorIndex++;
-        xPosition += padding;
-    }
-    */
     CGView::draw();
     
     // Once drawn the text is no longer required. So cleanup memory

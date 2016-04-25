@@ -28,8 +28,8 @@ public:
     void draw();
     Toolpanel(CGRect rect) : CGView(rect) {
         topPadding = 10;
-        padding = 20;
-        itemsPerRow = 5;
+        padding = 12;
+        itemsPerRow = 8;
         shouldHandleMouseEvent = true;
     };
     ButtonHandlerFunction action;

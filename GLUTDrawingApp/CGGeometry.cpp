@@ -130,6 +130,28 @@ void drawPoint(CGPoint point) {
     glEnd();
 }
 
+void drawTriangle(CGRect rect, bool filled) {
+    
+    // Get Points
+    CGPoint center = getCenter(rect);
+    
+    CGPoint top = CGPointMake(center.x, rect.origin.y);
+    CGPoint left = CGPointMake(rect.origin.x, rect.origin.y + rect.size.height);
+    CGPoint right = CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+
+    // Draw Points
+    if(filled) {
+        glBegin(GL_POLYGON);// Begin drawing of polygon
+    } else {
+        glBegin(GL_LINE_LOOP);
+    }
+    glVertex2f(top.x, top.y);
+    glVertex2f(left.x, left.y);
+    glVertex2f(right.x, right.y);
+    glEnd();// End drawing of polygon
+
+}
+
 bool hitTestWithRect(CGRect rect, CGPoint point) {
     
     return (point.x >= rect.origin.x && point.x <= rect.origin.x + rect.size.width &&
